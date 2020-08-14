@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 var exec = require('child_process').exec, child;
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 5000;
 
 fs.readFile('./index.html', function (err, html) {
     if (err) throw err;
