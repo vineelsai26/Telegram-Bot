@@ -4,7 +4,7 @@ BOT_TOKEN = '1131102756:AAHq5rYkv3tKFgLJwiR7sodZO15Aoe-r1Co'
 
 const bot = new Telegraf(BOT_TOKEN)
 
-document.write('Bot is live'); 
+console.log('Bot is live'); 
 
 bot.start((ctx) => ctx.reply('Welcome!'))
 
