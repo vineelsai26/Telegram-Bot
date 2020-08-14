@@ -1,36 +1,33 @@
 const Telegraf = require('telegraf')
+require('dotenv').config()
 
-BOT_TOKEN = '1131102756:AAHq5rYkv3tKFgLJwiR7sodZO15Aoe-r1Co'
-
-const bot = new Telegraf(BOT_TOKEN)
-
-console.log('Bot is live'); 
+const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.start((ctx) => ctx.reply('Welcome!'))
 
 bot.help((ctx) => ctx.reply('- send Hi or Hello \n- send sticker \n- /poll question option1 option2 ..'))
 
 bot.on('sticker', (ctx) => ctx.reply('👍'))
- 
+
 bot.command('poll', (ctx) => {
     const msg = ctx.message.text.replace('/poll ', '')
     var poll = msg.trim().split(" ")
     var options = poll.slice(1)
     var option = new Array()
     options.forEach(element => {
-        if(element.trim() != ""){
+        if (element.trim() != "") {
             option.push(element)
         }
     });
-    if (options.length != 0 && options.length != 1){
+    if (options.length != 0 && options.length != 1) {
         ctx.replyWithPoll(
             poll[0],
             option,
             { is_anonymous: false }
         )
-    } else if (options.length == 1){
+    } else if (options.length == 1) {
         ctx.reply('/poll Should have atleast two options')
-    } else{
+    } else {
         ctx.reply('/poll question option1 option2 ...')
     }
 })

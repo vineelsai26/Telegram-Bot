@@ -1,3 +1,3 @@
 # Telegram-Bot
 
-Telegram bot in Node js giv it a look at https://t.me/MarvelFridayBot
+Telegram bot in Node js giv it a look at [here](https://t.me/MarvelFridayBot)
