@@ -4,6 +4,8 @@ BOT_TOKEN = '1131102756:AAHq5rYkv3tKFgLJwiR7sodZO15Aoe-r1Co'
 
 const bot = new Telegraf(BOT_TOKEN)
 
+document.write('Bot is live'); 
+
 bot.start((ctx) => ctx.reply('Welcome!'))
 
 bot.help((ctx) => ctx.reply('- send Hi or Hello \n- send sticker \n- /poll question option1 option2 ..'))
