@@ -1,0 +1,22 @@
+{
+  "name": "telegraf",
+  "version": "3.38.0",
+  "description": "telegraf",
+  "main": "index.js",
+  "dependencies": {
+    "telegraf": "^3.38.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/telegram-friday-bot.git"
+  },
+  "keywords": [
+    "telegraf"
+  ],
+  "author": "vineelsai",
+  "license": "MIT"
+}
