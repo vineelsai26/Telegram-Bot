@@ -7,19 +7,17 @@ const DYNO_URL = "https://telegram-friday-bot.herokuapp.com/";
 
 const PORT = process.env.PORT || 5000;
 
-const app = fs.readFile('./index.html', function (err, html) {
+fs.readFile('./index.html', function (err, html) {
     if (err) throw err;
     http.createServer(function (request, response) {
         response.writeHeader(200, { "Content-Type": "text/html" });
         response.write(html);
         response.end();
+    }).listen(PORT, () => {
+        wakeUpDyno(DYNO_URL);
     })
     console.log('Bot is live');
 });
-
-app.listen(PORT, () => {
-    wakeUpDyno(DYNO_URL);
-})
 
 child = exec('node bot.js {{args}}',
     function (error, stdout, stderr) {
