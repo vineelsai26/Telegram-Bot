@@ -1,8 +1,8 @@
 const http = require('http');
 const fs = require('fs');
+const express = require("express");
+const wakeUpDyno = require("./wakeDyno.js");
 var exec = require('child_process').exec, child;
-
-const PORT = process.env.PORT || 5000;
 
 fs.readFile('./index.html', function (err, html) {
     if (err) throw err;
@@ -10,9 +10,19 @@ fs.readFile('./index.html', function (err, html) {
         response.writeHeader(200, { "Content-Type": "text/html" });
         response.write(html);
         response.end();
-    }).listen(PORT);
+    })
     console.log('Bot is live');
 });
+
+const DYNO_URL = "https://telegram-friday-bot.herokuapp.com/";
+
+const PORT = process.env.PORT || 5000;
+
+const app = express();
+
+app.listen(PORT, () => {
+    wakeUpDyno(DYNO_URL);
+})
 
 child = exec('node bot.js {{args}}',
     function (error, stdout, stderr) {
