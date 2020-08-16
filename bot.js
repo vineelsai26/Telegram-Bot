@@ -1,4 +1,5 @@
 const Telegraf = require('telegraf')
+const fetch = require('node-fetch')
 require('dotenv').config()
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -30,6 +31,11 @@ bot.command('poll', (ctx) => {
     } else {
         ctx.reply('/poll question option1 option2 ...')
     }
+})
+
+bot.command('echo', (ctx) => {
+    const msg = ctx.message.text.replace('/echo ', '')
+    ctx.reply(msg)
 })
 
 bot.on('text', (ctx) => {
