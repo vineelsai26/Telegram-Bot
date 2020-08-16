@@ -1,5 +1,5 @@
 const Telegraf = require('telegraf')
-const fetch = require('node-fetch')
+const github = require('octonode');
 require('dotenv').config()
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -36,6 +36,16 @@ bot.command('poll', (ctx) => {
 bot.command('echo', (ctx) => {
     const msg = ctx.message.text.replace('/echo ', '')
     ctx.reply(msg)
+})
+
+bot.command('github', (ctx) => {
+    const client = github.client();
+    client.get('/users/vineelsai26', {}, function (err, status, body, headers) {
+        if(err !== null){
+            console.log(err)
+        }
+        ctx.replyWithPhoto(body.avatar_url, { caption: 'Id : ' + body.id + '\n' + 'Name : ' + body.name + '\n' + 'User Name : ' + body.login + '\n' + 'Profile : ' + 'https://github.com/' + body.login})
+    });
 })
 
 bot.on('text', (ctx) => {
