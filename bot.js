@@ -1,63 +1,34 @@
 const Telegraf = require('telegraf')
-const github = require('octonode');
+
+const poll = require('./features/poll.js')
+const github = require('./features/github.js')
+const text = require('./features/text.js')
+
 require('dotenv').config()
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
-bot.start((ctx) => ctx.reply('Welcome!'))
+bot.start((ctx) => ctx.reply('Welcome! I am F.R.I.D.A.Y Bot not sure what you are looking for type /help to find what you can do'))
 
-bot.help((ctx) => ctx.reply('- send Hi or Hello \n- send sticker \n- /poll question option1 option2 ..'))
+bot.help((ctx) => ctx.reply('- send Hi or Hello \n- send sticker \n- /poll question option1 option2 .. \n- /github username'))
 
 bot.on('sticker', (ctx) => ctx.reply('👍'))
-
-bot.command('poll', (ctx) => {
-    const msg = ctx.message.text.replace('/poll ', '')
-    var poll = msg.trim().split(" ")
-    var options = poll.slice(1)
-    var option = new Array()
-    options.forEach(element => {
-        if (element.trim() != "") {
-            option.push(element)
-        }
-    });
-    if (options.length != 0 && options.length != 1) {
-        ctx.replyWithPoll(
-            poll[0],
-            option,
-            { is_anonymous: false }
-        )
-    } else if (options.length == 1) {
-        ctx.reply('/poll Should have atleast two options')
-    } else {
-        ctx.reply('/poll question option1 option2 ...')
-    }
-})
 
 bot.command('echo', (ctx) => {
     const msg = ctx.message.text.replace('/echo ', '')
     ctx.reply(msg)
 })
 
+bot.command('poll', (ctx) => {
+    poll.poll(ctx)
+})
+
 bot.command('github', (ctx) => {
-    const client = github.client();
-    client.get('/users/vineelsai26', {}, function (err, status, body, headers) {
-        if(err !== null){
-            console.log(err)
-        }
-        ctx.replyWithPhoto(body.avatar_url, { caption: 'Id : ' + body.id + '\n' + 'Name : ' + body.name + '\n' + 'User Name : ' + body.login + '\n' + 'Profile : ' + 'https://github.com/' + body.login})
-    });
+    github.github(ctx)
 })
 
 bot.on('text', (ctx) => {
-    const msg = ctx.message.text.toLowerCase()
-    if (msg == 'hi' || msg == 'hii' || msg == 'hello' || msg == 'hey') {
-        console.log(ctx.message.text.toLowerCase())
-        if (ctx.from.username == 'vineelsai') {
-            ctx.reply('Hi Boss')
-        } else {
-            ctx.reply('Hi' + ctx.from.first_name)
-        }
-    }
+    text.text(ctx)
 })
 
 bot.catch((err, ctx) => {
