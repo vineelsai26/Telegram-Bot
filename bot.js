@@ -10,7 +10,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.start((ctx) => ctx.reply('Welcome! I am F.R.I.D.A.Y Bot not sure what you are looking for type /help to find what you can do'))
 
-bot.help((ctx) => ctx.reply('- send Hi or Hello \n- send sticker \n- /poll question option1 option2 .. \n- /github username'))
+bot.help((ctx) => ctx.reply('- send Hi or Hello \n- send sticker \n- /poll question option1 option2 .. \n- /github username \n- /unpin'))
 
 bot.on('sticker', (ctx) => ctx.reply('👍'))
 
@@ -25,6 +25,10 @@ bot.command('poll', (ctx) => {
 
 bot.command('github', (ctx) => {
     github.github(ctx)
+})
+
+bot.command('unpin', (ctx) => {
+    bot.telegram.unpinChatMessage(ctx.chat.id)
 })
 
 bot.on('text', (ctx) => {
