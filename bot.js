@@ -42,6 +42,14 @@ bot.command('github', (ctx) => {
     github.github(ctx)
 })
 
+bot.command('pin', (ctx) => {
+    if (ctx.from.isAdmin) {
+        bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.message_id)
+    } else {
+        ctx.reply('You are not an admin')
+    }
+})
+
 bot.command('unpin', (ctx) => {
     if (ctx.from.isAdmin){
         bot.telegram.unpinChatMessage(ctx.chat.id)
