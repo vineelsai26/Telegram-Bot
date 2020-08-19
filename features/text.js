@@ -1,6 +1,4 @@
-const Telegraf = require('telegraf')
-
-module.exports.text = function text(ctx) {
+module.exports.text = function text(Telegraf, ctx) {
     const msg = ctx.message.text.toLowerCase()
     if (msg == 'hi' || msg == 'hii' || msg == 'hello' || msg == 'hey') {
         if (ctx.from.username == 'vineelsai') {

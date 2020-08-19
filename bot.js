@@ -4,6 +4,7 @@ const poll = require('./features/poll.js')
 const github = require('./features/github.js')
 const text = require('./features/text.js')
 const dice = require('./features/dice.js')
+const help = require('./features/help.js')
 
 require('dotenv').config()
 
@@ -11,7 +12,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.start((ctx) => ctx.reply('Welcome! I am F.R.I.D.A.Y Bot not sure what you are looking for type /help to find what you can do'))
 
-bot.help((ctx) => ctx.reply('- send Hi or Hello \n- send sticker \n- /poll question option1 option2 .. \n- /github username \n- /pin \n- /unpin \n- /rolladice'))
+bot.help((ctx) => help.help(Telegraf, ctx, bot))
 
 bot.use(function (ctx, next) {
     if (ctx.chat.id > 0) return next()
@@ -85,7 +86,7 @@ bot.catch((err, ctx) => {
 })
 
 bot.on('text', (ctx) => {
-    text.text(ctx)
+    text.text(Telegraf, ctx)
 })
 
 bot.launch()
