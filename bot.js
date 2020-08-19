@@ -5,6 +5,7 @@ const github = require('./features/github.js')
 const text = require('./features/text.js')
 const dice = require('./features/dice.js')
 const help = require('./features/help.js')
+const releaseBliss = require('./features/releaseBliss.js')
 
 require('dotenv').config()
 
@@ -62,6 +63,14 @@ bot.command('unpin', (ctx) => {
 
 bot.command('rolladice', (ctx) => {
     dice.dice(ctx)
+})
+
+bot.command('releaseBliss', (ctx) => {
+    if (ctx.from.username == 'vineelsai'){
+        releaseBliss.releaseBliss(ctx)
+    } else {
+        ctx.reply('You are not maintainer for Onclite', Telegraf.Extra.inReplyTo(ctx.message.message_id))
+    }
 })
 
 bot.hears('I am admin', function (ctx) {
