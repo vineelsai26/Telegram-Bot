@@ -54,6 +54,14 @@ bot.command('pin', (ctx) => {
     }
 })
 
+bot.command('pinmsg', (ctx) => {
+    if (ctx.from.isAdmin) {
+        pin.pinmsg(ctx)
+    } else {
+        ctx.reply('You are not an admin', Telegraf.Extra.inReplyTo(ctx.message.message_id))
+    }
+})
+
 bot.command('unpin', (ctx) => {
     if (ctx.from.isAdmin){
         pin.unpin(ctx)
