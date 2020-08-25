@@ -6,6 +6,7 @@ const text = require('./features/text.js')
 const dice = require('./features/dice.js')
 const help = require('./features/help.js')
 const releaseBliss = require('./features/releaseBliss.js')
+const pin = require('./features/pin.js')
 
 require('dotenv').config()
 
@@ -18,7 +19,7 @@ bot.help((ctx) => help.help(Telegraf, ctx, bot))
 bot.use(function (ctx, next) {
     if (ctx.chat.id > 0) return next()
 
-    return bot.telegram.getChatAdministrators(ctx.chat.id)
+    return ctx.telegram.getChatAdministrators(ctx.chat.id)
         .then(function (data) {
             if (!data || !data.length) return
             ctx.chat._admins = data
@@ -47,7 +48,7 @@ bot.command('github', (ctx) => {
 
 bot.command('pin', (ctx) => {
     if (ctx.from.isAdmin) {
-        bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.message_id)
+        pin.pin(ctx)
     } else {
         ctx.reply('You are not an admin', Telegraf.Extra.inReplyTo(ctx.message.message_id))
     }
@@ -55,7 +56,7 @@ bot.command('pin', (ctx) => {
 
 bot.command('unpin', (ctx) => {
     if (ctx.from.isAdmin){
-        bot.telegram.unpinChatMessage(ctx.chat.id)
+        pin.unpin(ctx)
     } else {
         ctx.reply('You are not an admin', Telegraf.Extra.inReplyTo(ctx.message.message_id))
     }
