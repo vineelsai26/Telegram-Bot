@@ -29,7 +29,7 @@ module.exports.help = function help(Telegraf, ctx, bot) {
         ctx.replyWithMarkdown('*Commands :* \n- /poll <question> <options> : Poll a question and remember to not use spaces in question or in options')
     }))
 
-    bot.action('pin', (ctx) => ctx.answerCbQuery('Poll', false).then(() => {
-        ctx.replyWithMarkdown('*Commands :* \n- /pin <Text> : Pin a message in group \n- /unpin : unpin message which is currently pined in chat')
+    bot.action('pin', (ctx) => ctx.answerCbQuery('Pin', false).then(() => {
+        ctx.replyWithMarkdown('*Commands :* \n- /pin : Pin a message in group \n- /pinmsg <Text> : Pin Text in group \n- /unpin : unpin message which is currently pined in chat')
     }))
 }
