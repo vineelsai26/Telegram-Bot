@@ -1,26 +1,28 @@
 {
-  "name": "telegraf",
-  "version": "3.38.0",
-  "description": "telegraf",
-  "main": "app.js",
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "node-fetch": "^2.6.0",
-    "octonode": "^0.9.5",
-    "telegraf": "^3.38.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "node app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vineelsai26/Telegram-Bot.git"
-  },
-  "keywords": [
-    "telegraf"
-  ],
-  "author": "vineelsai",
-  "license": "MIT"
+	"name": "telegraf",
+	"version": "3.38.0",
+	"description": "telegraf",
+	"main": "app.js",
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"node-fetch": "^2.6.0",
+		"octonode": "^0.9.5",
+		"telegraf": "^3.38.0"
+	},
+	"devDependencies": {
+		"prettier": "2.1.1"
+	},
+	"scripts": {
+		"test": "node app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vineelsai26/F.R.I.D.A.Y-Bot"
+	},
+	"keywords": [
+		"telegraf"
+	],
+	"author": "vineelsai",
+	"license": "MIT"
 }

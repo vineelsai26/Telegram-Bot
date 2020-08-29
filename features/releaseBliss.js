@@ -1,20 +1,21 @@
 module.exports.releaseBliss = function releaseBliss(ctx) {
+	const msg = ctx.message.text.replace('/releaseBliss ', '').trim().split(' ')
 
-    const msg = ctx.message.text.replace('/releaseBliss ', '').trim().split(' ')
+	var rom = new Array()
+	msg.forEach((element) => {
+		if (element.trim() != '') {
+			rom.push(element)
+		}
+	})
 
-    var rom = new Array()
-    msg.forEach(element => {
-        if (element.trim() != "") {
-            rom.push(element)
-        }
-    })
+	const version = rom[0]
+	const downloadLink = rom[1]
+	const ChangelogLink = rom[2]
 
-    const version = rom[0]
-    const downloadLink = rom[1]
-    const ChangelogLink = rom[2]
-
-    ctx.replyWithPhoto('https://drive.google.com/file/d/1ybOyYntwUpWvljKaAlT9BCIqXpaVbET2/view?usp=sharing', { 
-        caption: `
+	ctx.replyWithPhoto(
+		'https://drive.google.com/file/d/1ybOyYntwUpWvljKaAlT9BCIqXpaVbET2/view?usp=sharing',
+		{
+			caption: `
 *BlissROM Onclite Official*
 
 *Bliss ROM ${version} | 10 Q*
@@ -27,7 +28,8 @@ By @vineelsai
 *Follow* 👉🏻 [Bliss Official Channel](http://t.me/BlissROM_Updates)
 *Join* 👉🏻 [Bliss Support Group](https://t.me/Team_Bliss_Community)
 *Join* 👉🏻 [Device Specific Support](https://t.me/BissOnclite)
-`, parse_mode: 'Markdown'
-    })
-    
+`,
+			parse_mode: 'Markdown',
+		}
+	)
 }
