@@ -115,12 +115,12 @@ bot.hears('I am admin', function (ctx) {
 
 bot.command('kick', (ctx) => {
 	if (ctx.from.isAdmin) {
+		ctx.telegram.kickChatMember(ctx.message.chat.id, ctx.message.reply_to_message.from.id)
+	} else {
 		ctx.reply(
-			'You are an admin you can`t be kicked out rot here',
+			'You are not an admin you can`t kick people',
 			Telegraf.Extra.inReplyTo(ctx.message.message_id)
 		)
-	} else {
-		ctx.telegram.kickChatMember(ctx.message.chat.id, ctx.message.reply_to_message.from.id)
 	}
 })
 
