@@ -3,7 +3,7 @@ const fs = require('fs')
 const wakeUpDyno = require('./wakeDyno.js')
 const exec = require('child_process').exec
 
-const DYNO_URL = 'https://telegram-friday-bot.herokuapp.com/'
+const DYNO_URL = 'https://friday-telegram-bot.herokuapp.com/'
 
 const PORT = process.env.PORT || 5000
 
