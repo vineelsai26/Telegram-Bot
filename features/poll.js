@@ -11,7 +11,7 @@ module.exports.poll = function poll(ctx) {
 	if (options.length != 0 && options.length != 1) {
 		ctx.replyWithPoll(poll[0], option, { is_anonymous: false })
 	} else if (options.length == 1) {
-		ctx.reply('/poll Should have atleast two options')
+		ctx.reply('/poll Should have at least two options')
 	} else {
 		ctx.reply('/poll question option1 option2 ...')
 	}

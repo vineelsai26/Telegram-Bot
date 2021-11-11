@@ -5,8 +5,8 @@ module.exports.pin = function pin(ctx) {
 	)
 }
 
-module.exports.pinmsg = function pinmsg(ctx) {
-	const msg = ctx.message.text.replace('/pinmsg ', '').trim()
+module.exports.pinMsg = function pinMsg(ctx) {
+	const msg = ctx.message.text.replace('/pinMsg ', '').trim()
 	ctx.telegram
 		.sendMessage(ctx.chat.id, msg)
 		.then(({ message_id }) =>

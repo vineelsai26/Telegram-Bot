@@ -1,11 +1,11 @@
-const fetch = require('node-fetch')
+const https = require('https')
 
-const wakeUpDyno = (url, interval = 10, callback) => {
+const wakeUpDyno = (url, interval = 15, callback) => {
 	const milliseconds = interval * 60000
 	setTimeout(() => {
 		try {
 			console.log(`setTimeout called.`)
-			fetch(url).then(() => console.log('Fetching ${url}.'))
+			https.get(url, () => console.log(`Fetching ${url}.`))
 		} catch (err) {
 			console.log(
 				'Error fetching ${url}: ${err.message} Will try again in ${interval} minutes...'

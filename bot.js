@@ -11,11 +11,11 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.start((ctx) =>
 	ctx.reply(
-		'Welcome! I am F.R.I.D.A.Y Bot not sure what you are looking for type /help to find what you can do'
+		'Hello! I am E.D.I.T.H'
 	)
 )
 
-bot.use(function (ctx, next) {
+bot.use((ctx, next) => {
 	if (ctx.chat.id > 0) return next()
 
 	return ctx.telegram
@@ -57,9 +57,9 @@ bot.command('pin', (ctx) => {
 	}
 })
 
-bot.command('pinmsg', (ctx) => {
+bot.command('pinMsg', (ctx) => {
 	if (ctx.from.isAdmin) {
-		pin.pinmsg(ctx)
+		pin.pinMsg(ctx)
 	} else {
 		ctx.reply(
 			'You are not an admin',
@@ -94,7 +94,7 @@ bot.command('kick', (ctx) => {
 	}
 })
 
-bot.command('kickme', (ctx) => {
+bot.command('kickMe', (ctx) => {
 	if (ctx.from.isAdmin) {
 		ctx.reply(
 			'You are an admin you can`t be kicked out rot here',

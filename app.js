@@ -1,9 +1,9 @@
 const http = require('http')
 const fs = require('fs')
-// const wakeUpDyno = require('./wakeDyno.js')
+const wakeUpDyno = require('./wakeDyno.js')
 const exec = require('child_process').exec
 
-// const DYNO_URL = 'https://friday-telegram-bot.herokuapp.com/'
+const DYNO_URL = 'https://edith-vs-bot.herokuapp.com/'
 
 const PORT = process.env.PORT || 5000
 
@@ -14,7 +14,7 @@ fs.readFile('./index.html', function (err, html) {
 		response.write(html)
 		response.end()
 	}).listen(PORT, () => {
-		// wakeUpDyno(DYNO_URL)
+		wakeUpDyno(DYNO_URL)
 	})
 	console.log('Bot is live')
 })
