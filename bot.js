@@ -1,11 +1,8 @@
-const Telegraf = require('telegraf')
+const { Telegraf } = require('telegraf')
 
 const poll = require('./features/poll.js')
 const github = require('./features/github.js')
-const text = require('./features/text.js')
 const dice = require('./features/dice.js')
-const help = require('./features/help.js')
-const releaseBliss = require('./features/releaseBliss.js')
 const pin = require('./features/pin.js')
 
 require('dotenv').config()
@@ -17,8 +14,6 @@ bot.start((ctx) =>
 		'Welcome! I am F.R.I.D.A.Y Bot not sure what you are looking for type /help to find what you can do'
 	)
 )
-
-bot.help((ctx) => help.help(Telegraf, ctx, bot))
 
 bot.use(function (ctx, next) {
 	if (ctx.chat.id > 0) return next()
@@ -88,31 +83,6 @@ bot.command('rolladice', (ctx) => {
 	dice.dice(ctx)
 })
 
-bot.command('releaseBliss', (ctx) => {
-	if (ctx.from.username == 'vineelsai') {
-		releaseBliss.releaseBliss(ctx)
-	} else {
-		ctx.reply(
-			'You are not maintainer for Onclite',
-			Telegraf.Extra.inReplyTo(ctx.message.message_id)
-		)
-	}
-})
-
-bot.hears('I am admin', function (ctx) {
-	if (ctx.from.isAdmin) {
-		return ctx.reply(
-			'Yep!',
-			Telegraf.Extra.inReplyTo(ctx.message.message_id)
-		)
-	} else {
-		return ctx.reply(
-			'No, you are not',
-			Telegraf.Extra.inReplyTo(ctx.message.message_id)
-		)
-	}
-})
-
 bot.command('kick', (ctx) => {
 	if (ctx.from.isAdmin) {
 		ctx.telegram.kickChatMember(ctx.message.chat.id, ctx.message.reply_to_message.from.id)
@@ -136,14 +106,33 @@ bot.command('kickme', (ctx) => {
 	}
 })
 
+bot.hears('I am admin', function (ctx) {
+	if (ctx.from.isAdmin) {
+		return ctx.reply(
+			'Yep!',
+			Telegraf.Extra.inReplyTo(ctx.message.message_id)
+		)
+	} else {
+		return ctx.reply(
+			'No, you are not',
+			Telegraf.Extra.inReplyTo(ctx.message.message_id)
+		)
+	}
+})
+
+bot.on('text', function (ctx) {
+	const msg = ctx.message.text.toLowerCase()
+	if (msg == 'hi' || msg == 'hii' || msg == 'hello' || msg == 'hey') {
+		if (ctx.from.username == 'vineelsai') {
+			ctx.telegram.sendMessage(ctx.message.chat.id, `Hello Boss`)
+		} else {
+			ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.message.from.username}`)
+		}
+	}
+})
+
 bot.catch((err, ctx) => {
-	console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
+	console.log(`Oops, encountered an error for ${ctx.updateType}`, err)
 })
-
-bot.on('text', (ctx) => {
-	text.text(Telegraf, ctx)
-})
-
-bot.startPolling()
 
 bot.launch()
