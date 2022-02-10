@@ -11,7 +11,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.start((ctx) =>
 	ctx.reply(
-		'Hello! I am E.D.I.T.H'
+		`Hello! I am ${bot.botInfo.first_name}`
 	)
 )
 
@@ -123,11 +123,7 @@ bot.hears('I am admin', function (ctx) {
 bot.on('text', function (ctx) {
 	const msg = ctx.message.text.toLowerCase()
 	if (msg == 'hi' || msg == 'hii' || msg == 'hello' || msg == 'hey') {
-		if (ctx.from.username == 'vineelsai') {
-			ctx.telegram.sendMessage(ctx.message.chat.id, `Hello Boss`)
-		} else {
-			ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.message.from.username}`)
-		}
+		ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.message.from.username}`)
 	}
 })
 
