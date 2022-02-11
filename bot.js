@@ -123,7 +123,7 @@ bot.hears('I am admin', function (ctx) {
 bot.on('text', function (ctx) {
 	const msg = ctx.message.text.toLowerCase()
 	if (msg == 'hi' || msg == 'hii' || msg == 'hello' || msg == 'hey') {
-		ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.message.from.username}`)
+		ctx.telegram.sendMessage(ctx.message.chat.id, `Hello @${ctx.message.from.username}`)
 	}
 })
 

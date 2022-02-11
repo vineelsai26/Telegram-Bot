@@ -1,19 +1,12 @@
-const http = require('http')
-const fs = require('fs')
 const exec = require('child_process').exec
+const express = require('express')
+const app = express()
 
 const PORT = process.env.PORT || 5000
 
-fs.readFile('./index.html', function (err, html) {
-	if (err) throw err
-	http.createServer(function (req, res) {
-		res.writeHeader(200, { 'Content-Type': 'text/html' })
-		res.write(html)
-		res.end()
-	}).listen(PORT, () => {
-		console.log('Bot is live')
-	})
-})
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+
 
 exec('node bot.js', function (error, stdout, stderr) {
 	console.log('stdout: ' + stdout)
@@ -22,3 +15,11 @@ exec('node bot.js', function (error, stdout, stderr) {
 		console.log('exec error: ' + error)
 	}
 })
+
+app.get('/', (req, res) => {
+	res.render('index.ejs')
+})
+
+app.listen(PORT, () =>
+	console.log("Bot Is Live!")
+)
