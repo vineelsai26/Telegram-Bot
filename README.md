@@ -12,8 +12,8 @@ docker pull ghcr.io/vineelsai26/telegram-bot:latest
 
 ### Run
 
-Run the container on port 5000 and replace BOT_TOKEN with your bots api token
+Run the container and replace BOT_TOKEN with your bots api token
 
 ```sh
-docker run -p 5000:5000 -e BOT_TOKEN='BOT_TOKEN' -d ghcr.io/vineelsai26/telegram-bot
+docker run -e BOT_TOKEN='BOT_TOKEN' -d ghcr.io/vineelsai26/telegram-bot
 ```
