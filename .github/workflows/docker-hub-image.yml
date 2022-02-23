@@ -1,4 +1,4 @@
-name: Publish Docker Image
+name: Publish to Docker Hub
 
 on:
   push:
@@ -33,5 +33,5 @@ jobs:
         with:
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: vineelsai/video-chat:latest
+          tags: vineelsai/telegram-bot:latest
           file: ./Dockerfile
